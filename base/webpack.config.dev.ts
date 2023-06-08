@@ -1,5 +1,6 @@
 import path from 'path';
 import webpack from 'webpack';
+import 'webpack-dev-server';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 const workdir = process.cwd();
@@ -10,6 +11,11 @@ const config: webpack.Configuration = {
     output: {
         path: path.resolve(workdir, 'dist'),
         publicPath: '/',
+    },
+    devServer: {
+        historyApiFallback: {
+            index: '/',
+        },
     },
     module: {
         rules: [
@@ -24,7 +30,7 @@ const config: webpack.Configuration = {
                 exclude: /node_modules/,
             },
             {
-                test: /\.(scss|css)$/,
+                test: /\.css$/,
                 use: ['style-loader', 'css-loader'],
                 exclude: /node_modules/,
             },

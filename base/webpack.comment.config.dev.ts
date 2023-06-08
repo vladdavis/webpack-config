@@ -1,5 +1,6 @@
 import path from 'path';
 import webpack from 'webpack';
+import 'webpack-dev-server';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 // process.cwd returns a directory path where you run the application
@@ -14,6 +15,12 @@ const config: webpack.Configuration = {
         path: path.resolve(workdir, 'dist'),
         // publicPath is the address to your build on the server
         publicPath: '/',
+    },
+    devServer: {
+        // redirect to index.html in case of 404
+        historyApiFallback: {
+            index: '/',
+        },
     },
     module: {
         rules: [
